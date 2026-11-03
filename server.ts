@@ -447,7 +447,7 @@ async function startServer() {
     }
   }
 
-  // Periodic SSE Heartbeat Ping (keeps Cloud Run and browser proxies alive)
+  // Periodic SSE Heartbeat Ping (keeps local network connections and browser proxies alive)
   setInterval(() => {
     for (const res of sseClients) {
       try {
@@ -799,14 +799,6 @@ async function startServer() {
       success: true,
       lastClearedAt,
       message: 'เจ้าหน้าที่ดำเนินการล้างข้อมูลคิวเรียบร้อยแล้ว'
-    });
-  });
-
-  // Generate Demo Data: Permanently disabled in active platform to ensure 100% strict reality in historical reports
-  app.post('/api/queues/demo', (_req: Request, res: Response) => {
-    res.status(403).json({ 
-      success: false, 
-      message: 'ระบบปิดการสร้างคิวทดสอบอย่างถาวรเนื่องจากเปิดใช้งานจริง (Active Production Mode) เพื่อรักษาความถูกต้องของข้อมูลประวัติและรายงานสถิติ' 
     });
   });
 

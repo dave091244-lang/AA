@@ -27,14 +27,12 @@ import { DoeLogo } from './DoeLogo';
 import { CATEGORIES } from '../types';
 
 interface SystemGuideProps {
-  onGenerateDemoData: () => void;
   showToast: (msg: string, type?: 'success' | 'info' | 'error') => void;
 }
 
 type GuideSection = 'ticketing' | 'counters' | 'screens' | 'reporting' | 'audio_setup';
 
 export const SystemGuide: React.FC<SystemGuideProps> = ({
-  onGenerateDemoData,
   showToast
 }) => {
   const [activeSection, setActiveSection] = useState<GuideSection>('ticketing');
@@ -74,15 +72,25 @@ export const SystemGuide: React.FC<SystemGuideProps> = ({
             </div>
           </div>
           
-          <div className="bg-emerald-50 border border-emerald-300 text-emerald-950 px-4 py-2.5 rounded-2xl flex items-center gap-2.5 shadow-xs shrink-0">
-            <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
-            <div>
-              <div className="text-xs font-black flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>โหมดปฏิบัติงานจริง (Production Mode)</span>
+          <div className="flex flex-col sm:flex-row gap-2.5 shrink-0">
+            <div className="bg-emerald-50 border border-emerald-300 text-emerald-950 px-4 py-2 rounded-2xl flex items-center gap-2.5 shadow-xs">
+              <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
+              <div>
+                <div className="text-xs font-black flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>โหมดปฏิบัติงานจริง (Production)</span>
+                </div>
+                <div className="text-[11px] text-emerald-700">
+                  บันทึกเฉพาะเหตุการณ์จริง 100%
+                </div>
               </div>
-              <div className="text-[11px] text-emerald-700">
-                ปิดระบบคิวทดสอบ • บันทึกเฉพาะเหตุการณ์จริง 100%
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 text-blue-950 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-xs">
+              <CheckCircle2 className="w-5 h-5 text-blue-700 shrink-0" />
+              <div>
+                <div className="text-xs font-bold text-blue-950">ระบบใช้งานฟรี 100%</div>
+                <div className="text-[11px] text-blue-700">ไม่มีค่าใช้จ่าย • ไม่มีค่าบริการแอบแฝง</div>
               </div>
             </div>
           </div>

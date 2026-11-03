@@ -18,7 +18,6 @@ export interface RealtimeQueueState {
   completeQueue: (ticketId: string, counterNum: string | number) => void;
   skipQueue: (ticketId: string, counterNum: string | number) => void;
   clearAll: () => void;
-  generateDemo: () => void;
 }
 
 function createInitialCounters(): Record<string, CounterState> {
@@ -421,10 +420,6 @@ export function useRealtimeQueue(
     fetchState();
   }, [postAction, showToast, fetchState, setLatestIssuedTicket]);
 
-  const generateDemo = useCallback(async () => {
-    showToast('ระบบอยู่ในโหมดปฏิบัติงานจริง: ปิดระบบสร้างข้อมูลจำลองเพื่อรักษาความถูกต้องของข้อมูลประวัติและรายงานสถิติ', 'info');
-  }, [showToast]);
-
   return {
     queues,
     countersState,
@@ -439,7 +434,6 @@ export function useRealtimeQueue(
     recallQueue,
     completeQueue,
     skipQueue,
-    clearAll,
-    generateDemo
+    clearAll
   };
 }

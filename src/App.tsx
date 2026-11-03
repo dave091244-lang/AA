@@ -45,8 +45,7 @@ export default function App() {
     recallQueue,
     completeQueue,
     skipQueue,
-    clearAll,
-    generateDemo
+    clearAll
   } = useRealtimeQueue(soundEnabled, showToast);
 
   const waitingCount = queues.filter((q) => q.status === 'waiting').length;
@@ -144,7 +143,6 @@ export default function App() {
 
         {activeTab === 'setup' && (
           <SystemGuide
-            onGenerateDemoData={generateDemo}
             showToast={showToast}
           />
         )}
