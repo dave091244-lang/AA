@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Sarabun', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  h1, h2, h3, h4, .font-heading {
+    font-family: 'Prompt', 'Sarabun', sans-serif;
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Print Styles for POS Thermal Slip & Official Government A4 Reports */
+@media print {
+  @page {
+    margin: 10mm;
+  }
+
+  header, 
+  nav, 
+  footer, 
+  .no-print,
+  button {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  /* When printing ticket slip */
+  body:has(#printable-ticket) * {
+    visibility: hidden;
+  }
+
+  body:has(#printable-ticket) #printable-ticket,
+  body:has(#printable-ticket) #printable-ticket * {
+    visibility: visible;
+  }
+
+  body:has(#printable-ticket) #printable-ticket {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    width: 80mm;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+    border: 1.5px solid #000000;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border-radius: 0;
+  }
+
+  /* When printing report table */
+  #printable-report {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #printable-report table {
+    border-collapse: collapse !important;
+    width: 100% !important;
+  }
+
+  #printable-report th, 
+  #printable-report td {
+    border: 1px solid #333333 !important;
+    padding: 6px 10px !important;
+    color: #000000 !important;
+  }
+}
